@@ -29,7 +29,6 @@ int main()
 {
     int numPlayer = 2;
     int seed = 1000;
-    int r;
     int k[10] = {adventurer, council_room, feast, gardens, mine
                , remodel, smithy, village, baron, great_hall};
     int testVariable;
@@ -38,7 +37,7 @@ int main()
     printf ("TESTING ----- getCost()\n");
     printf ("***** TESTING ***** CURSE CARD *****\n");
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
-    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+    initializeGame(numPlayer, k, seed, &G); // initialize a new game
     testVariable = getCost(curse); //setting testVariable to result
     printf("card cost = %d, expected = 0\n", testVariable);
     assertTrue(testVariable, 0); 

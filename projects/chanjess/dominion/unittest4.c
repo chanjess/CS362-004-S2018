@@ -30,7 +30,6 @@ int main()
     int numPlayer;
     int maxPlayer = 4;
     int seed = 1000;
-    int r;
     int k[10] = {adventurer, council_room, feast, gardens, mine
                , remodel, smithy, village, baron, great_hall};
     int testVariable, testVariable1, testVariable2, testVariable3;
@@ -42,7 +41,7 @@ int main()
     for (numPlayer = 2; numPlayer <= maxPlayer; numPlayer++)
     {
         memset(&G, 23, sizeof(struct gameState));   // clear the game state
-        r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+        initializeGame(numPlayer, k, seed, &G); // initialize a new game
         testVariable = supplyCount(curse, &G); //setting testVariable to result
         if (numPlayer == 2)
         {
@@ -68,7 +67,7 @@ int main()
     for (numPlayer = 2; numPlayer <= maxPlayer; numPlayer++)
     {
         memset(&G, 23, sizeof(struct gameState));   // clear the game state
-        r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+        initializeGame(numPlayer, k, seed, &G); // initialize a new game
         testVariable1 = supplyCount(estate, &G); //setting testVariable to result
         testVariable2 = supplyCount(duchy, &G); //setting testVariable to result
         testVariable3 = supplyCount(province, &G); //setting testVariable to result
@@ -109,7 +108,7 @@ int main()
     for (numPlayer = 2; numPlayer <= maxPlayer; numPlayer++)
     {
         memset(&G, 23, sizeof(struct gameState));   // clear the game state
-        r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+        initializeGame(numPlayer, k, seed, &G); // initialize a new game
         testVariable1 = supplyCount(copper, &G); //setting testVariable to result
         testVariable2 = supplyCount(silver, &G); //setting testVariable to result
         testVariable3 = supplyCount(gold, &G); //setting testVariable to result

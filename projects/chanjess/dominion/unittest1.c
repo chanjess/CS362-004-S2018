@@ -32,7 +32,7 @@ int main()
     int seed = 1000;
     int numPlayer = 2;
     int maxBonus = 10;
-    int p, r, handCount;
+    int p, handCount;
     int bonus;
     int k[10] = {adventurer, council_room, feast, gardens, mine
                , remodel, smithy, village, baron, great_hall};
@@ -61,7 +61,7 @@ int main()
             p=0;
 
             memset(&G, 23, sizeof(struct gameState));   // clear the game state
-            r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+            initializeGame(numPlayer, k, seed, &G); // initialize a new game
             G.handCount[p] = handCount;                 // set the number of cards on hand
             memcpy(G.hand[p], coppers, sizeof(int) * handCount); // set all the cards to copper
             updateCoins(p, &G, bonus);
@@ -83,7 +83,7 @@ int main()
             p=0;
 
             memset(&G, 23, sizeof(struct gameState));   // clear the game state
-            r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+            initializeGame(numPlayer, k, seed, &G); // initialize a new game
             G.handCount[p] = handCount;                 // set the number of cards on hand
             memcpy(G.hand[p], silvers, sizeof(int) * handCount); // set all the cards to silvers
             updateCoins(p, &G, bonus);
@@ -105,7 +105,7 @@ int main()
             p=0;
 
             memset(&G, 23, sizeof(struct gameState));   // clear the game state
-            r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+            initializeGame(numPlayer, k, seed, &G); // initialize a new game
             G.handCount[p] = handCount;                 // set the number of cards on hand
             memcpy(G.hand[p], golds, sizeof(int) * handCount); // set all the cards to gold
             updateCoins(p, &G, bonus);
@@ -127,7 +127,7 @@ int main()
             p=1;
 
             memset(&G, 23, sizeof(struct gameState));   // clear the game state
-            r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+            initializeGame(numPlayer, k, seed, &G); // initialize a new game
             G.handCount[p] = handCount;                 // set the number of cards on hand
             memcpy(G.hand[p], coppers, sizeof(int) * handCount); // set all the cards to copper
             updateCoins(p, &G, bonus);
@@ -149,7 +149,7 @@ int main()
             p=1;
 
             memset(&G, 23, sizeof(struct gameState));   // clear the game state
-            r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+            initializeGame(numPlayer, k, seed, &G); // initialize a new game
             G.handCount[p] = handCount;                 // set the number of cards on hand
             memcpy(G.hand[p], silvers, sizeof(int) * handCount); // set all the cards to silvers
             updateCoins(p, &G, bonus);
@@ -171,7 +171,7 @@ int main()
             p=1;
 
             memset(&G, 23, sizeof(struct gameState));   // clear the game state
-            r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+            initializeGame(numPlayer, k, seed, &G); // initialize a new game
             G.handCount[p] = handCount;                 // set the number of cards on hand
             memcpy(G.hand[p], golds, sizeof(int) * handCount); // set all the cards to gold
             updateCoins(p, &G, bonus);

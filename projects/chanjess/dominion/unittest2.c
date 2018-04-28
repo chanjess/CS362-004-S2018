@@ -29,7 +29,6 @@ int main()
 {
     int numPlayer = 2;
     int seed = 1000;
-    int r;
     int k[10] = {adventurer, council_room, feast, gardens, mine
                , remodel, smithy, village, baron, great_hall};
     int testVariable;
@@ -38,14 +37,14 @@ int main()
     printf ("TESTING ----- isGameOver()\n");
     printf ("***** TESTING IF STACK OF PROVINCE CARDS IS EMPTY *****\n");
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
-    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+    initializeGame(numPlayer, k, seed, &G); // initialize a new game
     G.supplyCount[province] = 0; //setting province cards to empty
     testVariable = isGameOver(&G); //setting testVariable to result
     assertTrue(testVariable, 1); //if testVariable equals to 1, then game is over
 
     printf ("***** TESTING IF THREE SUPPLY DECKS ARE EMPTY *****\n");
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
-    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+    initializeGame(numPlayer, k, seed, &G); // initialize a new game
     G.supplyCount[0] = 0; //setting supply decks to empty
     G.supplyCount[1] = 0;
     G.supplyCount[2] = 0;
