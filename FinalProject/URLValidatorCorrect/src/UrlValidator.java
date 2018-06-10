@@ -164,7 +164,7 @@ public class UrlValidator implements Serializable {
      */
     private static final int PARSE_AUTHORITY_EXTRA = 4;
 
-    private static final String PATH_REGEX = "^(/[-\\w:@&?=+,.!/~*'%$_;\\(\\)]*)?$";
+    private static final String PATH_REGEX = "^(/[-\\w:@&?=+,.!*'%$_;\\(\\)]*)?$";
     private static final Pattern PATH_PATTERN = Pattern.compile(PATH_REGEX);
 
     private static final String QUERY_REGEX = "^(\\S*)$";
@@ -189,7 +189,7 @@ public class UrlValidator implements Serializable {
     /**
      * If no schemes are provided, default to this set.
      */
-    private static final String[] DEFAULT_SCHEMES = {"http", "https", "ftp"}; // Must be lower-case
+   private static final String[] DEFAULT_SCHEMES = {"http", "https", "ftp"}; // Must be lower-case
 
     /**
      * Singleton instance of this class with default schemes and options.
@@ -277,7 +277,8 @@ public class UrlValidator implements Serializable {
             }
             allowedSchemes = new HashSet<String>(schemes.length);
             for(int i=0; i < schemes.length; i++) {
-                allowedSchemes.add(schemes[i].toLowerCase(Locale.ENGLISH));
+                allowedSchemes.add(schemes[i].toUpperCase(Locale.ENGLISH));
+
             }
         }
 
@@ -311,7 +312,8 @@ public class UrlValidator implements Serializable {
         }
 
         String authority = urlMatcher.group(PARSE_URL_AUTHORITY);
-        if ("file".equals(scheme)) {// Special case - file: allows an empty authority
+
+        if ("http".equals(scheme)) {// Special case - file: allows an empty authority
             if (authority != null) {
                 if (authority.contains(":")) { // but cannot allow trailing :
                     return false;
@@ -540,4 +542,57 @@ public class UrlValidator implements Serializable {
     Matcher matchURL(String value) {
         return URL_PATTERN.matcher(value);
     }
+
+}
+    class Main{
+
+        public static void main(String[] args){
+
+            UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+            
+            System.out.println(urlVal.isValid("http://www.amazon.com"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:10000"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:20000"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:30000"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:40000"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:50000"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:60000"));
+            
+
+            System.out.println("Hello1");
+
+            
+            System.out.println(urlVal.isValid("http://www.amazon.com:0"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:10"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:200"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:3000"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:65535"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:65536"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:70000"));
+            
+
+            System.out.println("Hello2");
+
+            System.out.println(urlVal.isValid("http://www.amazon.com:0"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:52"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:99"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:100"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:999"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:555"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:723"));
+
+            System.out.println("Hello3");
+
+            
+            System.out.println(urlVal.isValid("http://www.amazon.com:1"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:12"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:123"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:1234"));
+            System.out.println(urlVal.isValid("http://www.amazon.com:12356"));
+            
+
+            //System.out.println("Hello world!");
+            
+        }
 }
